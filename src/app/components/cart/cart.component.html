@@ -1,0 +1,19 @@
+<h3>Your Cart</h3>
+
+<mat-list [@listAnimation]="items().length">
+  @for (cartItem of items(); track cartItem.product.id; let last = $last) {
+  <app-cart-item [item]="cartItem" [lastItem]="last"> </app-cart-item>
+  }
+  <ng-template #empty>
+    <p>Your cart is empty.</p>
+  </ng-template>
+
+  <mat-divider></mat-divider>
+
+  <p class="total">
+    Total: <strong>{{ total() | currency }}</strong>
+  </p>
+  @if (items().length) {
+  <button mat-stroked-button (click)="clear()">Clear Cart</button>
+  }
+</mat-list>

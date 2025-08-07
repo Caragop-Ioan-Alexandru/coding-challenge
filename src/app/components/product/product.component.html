@@ -1,0 +1,17 @@
+<mat-card class="product-card">
+  <div class="img-container">
+    <img ngSrc="{{ product.image }}" [alt]="product.title" priority fill />
+  </div>
+
+  <mat-card-content>
+    <mat-card-title class="product-title">{{ product.title }}</mat-card-title>
+    <mat-card-footer class="product-price">{{
+      product.price | currency
+    }}</mat-card-footer>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-flat-button color="primary" (click)="onAdd(product)">
+      Add to Cart
+    </button>
+  </mat-card-actions>
+</mat-card>

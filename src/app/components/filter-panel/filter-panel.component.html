@@ -1,0 +1,88 @@
+<div class="filter-panel">
+  <mat-form-field>
+    <mat-label>Category</mat-label>
+    <mat-select
+      [ngModel]="filters().category"
+      (ngModelChange)="onCategoryChange($event)"
+    >
+      <mat-option *ngFor="let category of categories()" [value]="category"
+        >{{ category }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Min Price</mat-label>
+    <input
+      #minPriceInput="ngModel"
+      matInput
+      placeholder="Min"
+      type="number"
+      min="0"
+      [ngModel]="filters().minPrice"
+      (ngModelChange)="onMinPriceChange($event)"
+    />
+    @if (filters().minPrice) {
+    <button
+      class="clear-button"
+      matSuffix
+      matIconButton
+      aria-label="Clear"
+      (click)="onMinPriceChange(0)"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    }
+    <mat-error *ngIf="minPriceInput?.errors?.['min']">
+      Price cannot be negative
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Max Price</mat-label>
+    <input
+      matInput
+      #maxPriceInput="ngModel"
+      placeholder="Max"
+      type="number"
+      min="0"
+      [ngModel]="filters().maxPrice"
+      (ngModelChange)="onMaxPriceChange($event)"
+    />
+    <mat-error *ngIf="maxPriceInput?.errors?.['min']">
+      Price cannot be negative
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Sort by Price</mat-label>
+    <mat-select
+      [ngModel]="filters().sort"
+      (ngModelChange)="onSortChange($event)"
+    >
+      <mat-option [value]="sortOrder.Ascending">Low → High</mat-option>
+      <mat-option [value]="sortOrder.Descending">High → Low</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input
+      matInput
+      placeholder="Search by keyword"
+      [ngModel]="filters().keyword"
+      (ngModelChange)="onKeywordChange($event)"
+    />
+    @if (filters().keyword) {
+    <button
+      class="clear-button"
+      matSuffix
+      matIconButton
+      aria-label="Clear"
+      (click)="onKeywordChange('')"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    }
+  </mat-form-field>
+</div>

@@ -1,0 +1,27 @@
+@use "variables" as vars;
+
+mat-list-item {
+  padding-top: vars.$spacing-unit * 0.75;
+  padding-bottom: vars.$spacing-unit * 0.75;
+  min-height: 100px;
+  display: flex;
+}
+
+.qty {
+  width: 2rem;
+  text-align: center;
+
+  &-controls {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: vars.$spacing-unit * 0.25;
+    width: 98%;
+  }
+
+  &-actions {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}

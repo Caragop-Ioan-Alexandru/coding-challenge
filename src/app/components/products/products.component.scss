@@ -1,0 +1,49 @@
+@use "variables" as vars;
+
+:host {
+  display: block;
+  max-width: vars.$breakpoint-lg;
+  margin: vars.$spacing-unit auto;
+  padding: 0 vars.$spacing-unit;
+  .spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 200px;
+  }
+
+  .no-results-message {
+    text-align: center;
+    padding: 3 * vars.$spacing-unit vars.$spacing-unit;
+    color: rgba(0, 0, 0, 0.6);
+
+    .no-results-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: vars.$spacing-unit;
+
+      mat-icon {
+        font-size: 3 * vars.$spacing-unit;
+        width: 3 * vars.$spacing-unit;
+        height: 3 * vars.$spacing-unit;
+        line-height: 1;
+      }
+    }
+  }
+}
+
+.grid-container {
+  display: grid;
+  gap: vars.$spacing-unit;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  padding: vars.$spacing-unit;
+  justify-items: center;
+
+  .grid-item {
+    max-width: vars.$card-max-width;
+    width: 100%;
+  }
+}

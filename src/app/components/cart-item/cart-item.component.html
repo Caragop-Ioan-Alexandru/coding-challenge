@@ -1,0 +1,43 @@
+<mat-list-item>
+  <span matListItemTitle>{{ item.product.title }}</span>
+  <span matListItemLine>Unit: {{ item.product.price | currency }}</span>
+  <span matListItemLine
+    >Total:
+    <span [@quantityChange]="item.quantity">
+      {{ item.product.price * item.quantity | currency }}
+    </span>
+  </span>
+  <span matListItemMeta>
+    <button mat-icon-button color="warn" (click)="removeItem(item.product.id)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </span>
+</mat-list-item>
+<div class="qty-controls">
+  <span class="qty-label">Quantity:</span>
+  <div class="qty-actions">
+    <button
+      mat-icon-button
+      aria-label="Decrease quantity"
+      (click)="decrement(item.product.id)"
+      [disabled]="item.quantity <= 1"
+    >
+      <mat-icon>remove</mat-icon>
+    </button>
+
+    <span class="qty" [@quantityChange]="item.quantity"
+      >{{ item.quantity }}
+    </span>
+
+    <button
+      mat-icon-button
+      aria-label="Increase quantity"
+      (click)="increment(item.product.id)"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>
+@if (!lastItem) {
+<mat-divider [inset]="true"></mat-divider>
+}

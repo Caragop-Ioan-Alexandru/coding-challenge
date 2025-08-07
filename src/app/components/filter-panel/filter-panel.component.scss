@@ -1,0 +1,22 @@
+@use "variables" as vars;
+
+:host {
+  display: block;
+  max-width: vars.$breakpoint-lg;
+  padding: 0 vars.$spacing-unit;
+
+  .filter-panel {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: vars.$spacing-unit;
+    padding: vars.$spacing-unit 0;
+
+    .clear-button {
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,1 +1,53 @@
-/* You can add global styles to this file, and also import other style files */
+@use "@angular/material" as mat;
+@include mat.core();
+
+:root {
+  --primary-yellow: #fec22f;
+  --mdc-filled-button-container-color: var(--primary-yellow);
+  --mdc-outlined-button-label-text-color: #46494f;
+  --mdc-outlined-button-outline-color: var(--primary-yellow);
+  --mdc-filled-button-label-text-color: #46494f;
+  --mat-app-corner-full: 4px;
+  --mdc-filled-button-container-shape: 4px;
+  --mat-badge-text-color: #46494f;
+
+  @include mat.progress-spinner-overrides(
+    (
+      active-indicator-color: (
+        var(--primary-yellow),
+      ),
+    )
+  );
+
+  .mat-badge .mat-badge-content {
+    background-color: #fec22f;
+    color: var(----mat-badge-text-color);
+  }
+  .mat-icon {
+    color: #3d757f;
+  }
+}
+
+$primary-palette: mat.$yellow-palette;
+
+$custom-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: $primary-palette,
+    ),
+  )
+);
+
+html {
+  @include mat.all-component-themes($custom-theme);
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

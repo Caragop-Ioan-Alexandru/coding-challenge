@@ -1,0 +1,28 @@
+<app-filter-panel></app-filter-panel>
+
+<ng-container *ngIf="productService.isLoading(); else showResults">
+  <div class="spinner-container">
+    <mat-spinner></mat-spinner></div
+></ng-container>
+
+<ng-template #showResults>
+  @if (filteredProducts().length > 0) {
+  <div class="grid-container" [@gridAnimation]="filteredProducts().length">
+    @for (product of filteredProducts(); track product.id) {
+    <div class="grid-item">
+      <app-product [product]="product"></app-product>
+    </div>
+    }
+  </div>
+  } @else {
+  <div class="no-results-message">
+    <div class="no-results-icon">
+      <mat-icon>filter_alt_off</mat-icon>
+    </div>
+    <p>No products match the selected filters.</p>
+    <button mat-stroked-button color="primary" (click)="clearFilters()">
+      Clear Filters
+    </button>
+  </div>
+  }
+</ng-template>
