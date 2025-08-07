@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { computed, Injectable, Signal, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { finalize, Observable } from 'rxjs';
+import { catchError, finalize, Observable, of } from 'rxjs';
 
 export interface Product {
   id: number;
@@ -19,6 +19,7 @@ export class ProductsService {
   private readonly dataUrl = 'assets/mock-products.json';
   public products: Signal<Product[]>;
   public isLoading = signal(true);
+  public error = signal<string | null>(null);
 
   categories = computed(() => {
     const all = this.products();
@@ -33,8 +34,13 @@ export class ProductsService {
   }
 
   private getProducts(): Observable<Product[]> {
-    return this.http
-      .get<Product[]>(this.dataUrl)
-      .pipe(finalize(() => this.isLoading.set(false)));
+    return this.http.get<Product[]>(this.dataUrl).pipe(
+      catchError((err) => {
+        const msg = err.message;
+        this.error.set(msg);
+        return of<Product[]>([]);
+      }),
+      finalize(() => this.isLoading.set(false))
+    );
   }
 }

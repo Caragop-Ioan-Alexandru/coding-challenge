@@ -12,6 +12,7 @@ import { FilterPanelComponent } from '../filter-panel/filter-panel.component';
 import { FilterService } from '../../services/filter-service/filter.service';
 import { gridAnimation } from '../../animations/grid.animation';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-products',
@@ -25,6 +26,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ProductComponent,
     FilterPanelComponent,
     MatProgressSpinnerModule,
+    MatToolbarModule,
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
